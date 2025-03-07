@@ -1,0 +1,18 @@
+Proposal Title: Business Service 5
+Client: Client 5
+Date: 5-Mar-2024
+
+Executive Summary:
+Service 5 Description
+
+Scope of Work:
+- Task A-5
+- Task B-5
+- Task C-5
+
+Pricing:
+- Task A-5: $5000
+- Task B-5: $7500
+- Task C-5: $10000
+
+Total Cost: $22500

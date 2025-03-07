@@ -1,0 +1,18 @@
+Proposal Title: Business Service 4
+Client: Client 4
+Date: 4-Mar-2024
+
+Executive Summary:
+Service 4 Description
+
+Scope of Work:
+- Task A-4
+- Task B-4
+- Task C-4
+
+Pricing:
+- Task A-4: $4000
+- Task B-4: $6000
+- Task C-4: $8000
+
+Total Cost: $18000

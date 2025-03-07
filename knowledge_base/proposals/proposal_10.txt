@@ -1,0 +1,18 @@
+Proposal Title: Business Service 10
+Client: Client 10
+Date: 10-Mar-2024
+
+Executive Summary:
+Service 10 Description
+
+Scope of Work:
+- Task A-10
+- Task B-10
+- Task C-10
+
+Pricing:
+- Task A-10: $10000
+- Task B-10: $15000
+- Task C-10: $20000
+
+Total Cost: $45000

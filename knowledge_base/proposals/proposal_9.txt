@@ -1,0 +1,18 @@
+Proposal Title: Business Service 9
+Client: Client 9
+Date: 9-Mar-2024
+
+Executive Summary:
+Service 9 Description
+
+Scope of Work:
+- Task A-9
+- Task B-9
+- Task C-9
+
+Pricing:
+- Task A-9: $9000
+- Task B-9: $13500
+- Task C-9: $18000
+
+Total Cost: $40500

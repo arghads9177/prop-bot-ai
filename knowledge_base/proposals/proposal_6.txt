@@ -1,0 +1,18 @@
+Proposal Title: Business Service 6
+Client: Client 6
+Date: 6-Mar-2024
+
+Executive Summary:
+Service 6 Description
+
+Scope of Work:
+- Task A-6
+- Task B-6
+- Task C-6
+
+Pricing:
+- Task A-6: $6000
+- Task B-6: $9000
+- Task C-6: $12000
+
+Total Cost: $27000

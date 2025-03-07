@@ -1,0 +1,18 @@
+Proposal Title: Web Development Proposal
+Client: ABC Enterprises
+Date: 01-Jan-2024
+
+Executive Summary:
+Web Development using React.js and Node.js
+
+Scope of Work:
+- UI/UX Design
+- Frontend & Backend Development
+- Testing & Deployment
+
+Pricing:
+- UI/UX Design: $2000
+- Frontend & Backend Development: $5000
+- Testing & Deployment: $1000
+
+Total Cost: $8000

@@ -1,0 +1,18 @@
+Proposal Title: Business Service 8
+Client: Client 8
+Date: 8-Mar-2024
+
+Executive Summary:
+Service 8 Description
+
+Scope of Work:
+- Task A-8
+- Task B-8
+- Task C-8
+
+Pricing:
+- Task A-8: $8000
+- Task B-8: $12000
+- Task C-8: $16000
+
+Total Cost: $36000

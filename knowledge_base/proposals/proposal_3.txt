@@ -1,0 +1,18 @@
+Proposal Title: Business Service 3
+Client: Client 3
+Date: 3-Mar-2024
+
+Executive Summary:
+Service 3 Description
+
+Scope of Work:
+- Task A-3
+- Task B-3
+- Task C-3
+
+Pricing:
+- Task A-3: $3000
+- Task B-3: $4500
+- Task C-3: $6000
+
+Total Cost: $13500
