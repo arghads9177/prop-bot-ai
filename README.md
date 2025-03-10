@@ -1,37 +1,41 @@
-# PropBot AI
+# PropBot AI - Proposal Generation Tool
 
-🚀 **PropBot AI** – An AI-powered chatbot that helps businesses generate professional proposals with automated cost estimation and document generation.
+## Framework & Tech Stack
+- **Frontend:** Streamlit
+- **Backend:** LangChain
+- **Vector Database:** ChromaDB (for retrieving stored proposal templates)
+- **LLM:** OpenAI GPT models
+- **Document Processing:** Python-docx, ReportLab
+- **Data Processing:** Pandas
 
-## 📌 Project Overview
-PropBot AI is a Retrieval-Augmented Generation (RAG) chatbot that assists businesses in creating proposals by:
-- Extracting relevant information from a document database (FAQs, past proposals, pricing data, etc.) using **LangChain** and **ChromaDB**.
-- Automatically calculating cost estimates from structured data (CSV, Excel) using **Pandas**.
-- Generating customized proposals in **DOCX/PDF** formats using **python-docx** and **ReportLab**.
-- Providing a user-friendly interface using **Streamlit**.
+## Project Phases
 
-## 🎯 Key Features
-✅ **Context-aware conversation memory** using LangChain's memory components.  
-✅ **Real-time cost estimation** using structured pricing data.  
-✅ **Proposal document generation** in DOCX and PDF formats.  
-✅ **Interactive UI** powered by Streamlit for seamless user experience.  
-✅ **AI-driven responses** based on stored business knowledge.  
+### Phase 1: UI Development
+- Implement a **sidebar menu** with two options: Freelancing Proposal (default) and Business Proposal.
+- Display input fields:
+  - **Freelancing Proposal:** "About You" and "Job Requirements"
+  - **Business Proposal:** "About Your Business" and "Job Requirements"
+- Add a button to generate proposals in **DOCX** and **PDF** formats.
 
-## 🏗️ Project Architecture
-```
-📂 PropBot-AI/
-│-- 📂 knowledge_base/           # Contains FAQs, proposals, pricing data
-│   │-- faqs.json                # Frequently Asked Questions
-│   │-- pricing_data.csv         # Pricing details in CSV format
-│   │-- pricing_data.xlsx        # Pricing details in Excel format
-│   │-- 📂 proposals/             # Past business proposals
-│-- 📂 src/                      # Source code for PropBot AI
-│   │-- app.py                   # Streamlit app for chatbot UI
-│   │-- chatbot.py               # Chatbot logic using LangChain
-│   │-- data_loader.py           # Loads data into ChromaDB
-│   │-- proposal_generator.py    # Generates proposal documents
-│-- requirements.txt             # Dependencies for the project
-│-- README.md                    # Project documentation
-```
+### Phase 2: Proposal Generation Pipeline
+- Design a **Prompting Strategy** for proposal generation:
+  - If freelancer/business details are missing, model should prompt the user to provide them.
+  - If job requirements are unclear, model should request clarification.
+- Load **predefined proposal templates** from a template folder.
+- Utilize **LangChain’s LLM integration** to generate proposals dynamically.
+
+### Phase 3: Document Generation
+- Convert LLM-generated proposals into:
+  - **DOCX format** using `python-docx`
+  - **PDF format** using `ReportLab`
+
+### Phase 4: Enhancements & Optimization
+- Improve response validation for missing information.
+- Implement caching for faster proposal retrieval.
+- Fine-tune prompt engineering for better-quality proposals.
+
+This structured approach ensures an AI-powered proposal generation tool tailored for freelancers and business owners. 🚀
+
 
 ## 🔧 Installation & Setup
 1. **Clone the Repository**  
@@ -56,14 +60,6 @@ PropBot AI is a Retrieval-Augmented Generation (RAG) chatbot that assists busine
    ```bash
    streamlit run src/app.py
    ```
-
-## 🛠️ Technologies Used
-- **LangChain** – Context retrieval and AI-powered chatbot
-- **ChromaDB** – Vector database for storing and retrieving knowledge
-- **OpenAI API** – LLM for generating responses
-- **Streamlit** – Web UI for user interaction
-- **python-docx & ReportLab** – Document generation (DOCX/PDF)
-- **Pandas** – Data processing for pricing calculations
 
 ## 📖 Usage Guide
 - Enter your business requirements in the chatbot.
