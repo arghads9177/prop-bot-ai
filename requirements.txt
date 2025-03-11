@@ -17,3 +17,6 @@ python-dotenv
 pandas
 python-docx
 reportlab
+weasyprint
+markdown2
+html2docx
