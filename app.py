@@ -1,5 +1,7 @@
 import streamlit as st
 from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 from langchain_core.prompts import PromptTemplate
 from io import BytesIO
 import markdown2
@@ -10,10 +12,11 @@ from html2docx import html2docx
 
 # Load environment variables
 load_dotenv()
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+# os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
 
 def generate_proposal(proposal_type, about_you, job_requirements):
-    """Generates a proposal using OpenAI's GPT-4o model via LangChain."""
+    """Generates a proposal using GROQ LLAMA 3.3 model via LangChain."""
     if not about_you.strip():
         return "Please provide details about yourself or your business."
     if not job_requirements.strip():
@@ -30,12 +33,12 @@ def generate_proposal(proposal_type, about_you, job_requirements):
                 "If job requirements are unclear, request clarification. "
                 "Otherwise, ensure the output follows this exact format: \n\n"
                 "# Freelancing Proposal\n"
-                "*Freelancer: {about_you}* | Email: *[Your Email]* | M: *[Your Contact Number]* | Website: *[Portfolio/Website Link]*\n\n"
-                "**Proposal for:** {job_requirements}\n"
-                "**Prepared By:** {about_you}\n"
+                "*Freelancer: [Freelancer Name]* | Email: *[Your Email]* | M: *[Your Contact Number]* | Website: *[Portfolio/Website Link]*\n\n"
+                "**Proposal for:** [Project Name]\n"
+                "**Prepared By:** [Freelancer Name]\n"
                 "**Date:** [Proposal Date]\n\n"
                 "## 1. Introduction\n"
-                "Dear **{job_requirements}**,\n\n"
+                "Dear **[Client Name]**,\n\n"
                 "I am excited about the opportunity to collaborate on **[Project Name]**. "
                 "With **[X years]** of experience in **[your field, e.g., web development, content writing, digital marketing, etc.]**, "
                 "I am confident in my ability to deliver high-quality results that align with your vision.\n\n"
@@ -78,13 +81,13 @@ def generate_proposal(proposal_type, about_you, job_requirements):
                 "## 9. Next Steps\n"
                 "If you’re ready to move forward, let’s discuss your project further. I am available for a quick call or chat at your convenience.\n\n"
                 "**Schedule a Call:** [Your Scheduling Link]\n"
-                "**Email Me:** {about_you}\n"
-                "**Call Me:** {about_you}\n\n"
+                "**Email Me:** [Your Email]\n"
+                "**Call Me:** [Your Contact Number]\n\n"
                 "Looking forward to working with you and bringing your project to life!\n\n"
                 "Best regards,\n"
-                "{about_you}\n"
+                "[Freelancer Name]\n"
                 "[Your Freelance Role, e.g., Web Developer, Copywriter, Graphic Designer]\n"
-                "Website:{about_you}\n"
+                "Website:[Portfolio/Website Link]\n"
                 "Note the following point while generating the proposal:\n"
                 "- After 'Prepared By:' add name of the freelancer only. Don't add other details about the freelancer. If name is not present add placeholder [Freelancer Name].\n"
                 "- After 'Freelancer Details:' add name of the freelancer only. Don't add other details about the freelancer. If name is not present add placeholder [Freelancer Name]."
@@ -106,14 +109,14 @@ def generate_proposal(proposal_type, about_you, job_requirements):
                 "Otherwise, Ensure the output follows this exact format: \n\n"
                 "# Business Proposal\n"
                 "**Prepared For:** [Client Name]\n"
-                "**Prepared By:** {about_you}\n"
+                "**Prepared By:** [Company Name]\n"
                 "**Date:** [Proposal Date]\n\n"
                 "## 1. Executive Summary\n"
-                "This proposal outlines how {about_you} can provide [specific service or product] to [Client Name]. "
+                "This proposal outlines how [Company Name] can provide [specific service or product] to [Client Name]. "
                 "Our expertise in [industry/sector] allows us to deliver [key benefits], ensuring efficiency, cost-effectiveness, and high-quality results.\n\n"
                 "## 2. About Us\n"
                 "### Who We Are\n"
-                "{about_you} is a [years of experience]-year-old company specializing in [your services/products]. "
+                "[Company Name] is a [years of experience]-year-old company specializing in [your services/products]. "
                 "We have successfully served [number] clients across [regions/countries] and are committed to delivering excellence.\n\n"
                 "### Our Mission & Vision\n"
                 "- *Mission:* To provide [primary goal/service] with [unique value proposition].\n"
@@ -164,7 +167,7 @@ def generate_proposal(proposal_type, about_you, job_requirements):
                 "**Email Us:** [Your Email Address]\n"
                 "**Call Us:** [Your Phone Number]\n\n"
                 "Sincerely,\n"
-                "{about_you}\n"
+                "[Company Name]\n"
                 "Note the following point while generating the proposal:\n"
                 "- After 'Prepared By:' add name of the company.\n"
                 "- After 'Sincerely,' add name of the company only in the next line. Don't add other details about the company."
@@ -172,7 +175,8 @@ def generate_proposal(proposal_type, about_you, job_requirements):
         ),
     }
 
-    llm = ChatOpenAI(model_name="gpt-4o")
+    # llm = ChatOpenAI(model_name="gpt-4o")
+    llm = ChatGroq(model_name="llama-3.3-70b-versatile")
     prompt = prompt_templates[proposal_type]
     chain = prompt | llm
     response = chain.invoke({"about_you": about_you, "job_requirements": job_requirements})

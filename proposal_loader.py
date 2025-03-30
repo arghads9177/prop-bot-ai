@@ -1,6 +1,7 @@
 from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
+from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 import os
 from dotenv import load_dotenv
@@ -9,7 +10,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Set up OpenAI API key
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+# os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+os.environ["HUGGINGFACE_API_KEY"] = os.getenv("HUGGINGFACE_API_KEY")
 
 # Define file paths
 PROPOSALS_DIR = "knowledge_base/proposals"
@@ -33,7 +35,8 @@ def chunk_documents(documents, chunk_size=500, chunk_overlap=50):
 
 # Store embeddings in ChromaDB
 def store_in_chromadb(documents):
-    embeddings = OpenAIEmbeddings()
+    # embeddings = OpenAIEmbeddings()
+    embeddings = HuggingFaceEmbeddings(model_name= "BAAI/bge-small-en-v1.5")
     vectorstore = Chroma.from_documents(documents, embeddings, persist_directory=CHROMADB_DIR)
     # vectorstore.persist()
     return vectorstore
