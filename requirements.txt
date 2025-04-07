@@ -20,3 +20,5 @@ reportlab
 weasyprint
 markdown2
 html2docx
+langgraph
+pydantic
