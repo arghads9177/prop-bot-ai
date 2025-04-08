@@ -8,7 +8,6 @@ from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 import os
 
-from typing import Dict, Any
 
 from agents.state import AppState
 
@@ -33,6 +32,9 @@ If the information is insufficient or not related to a freelancer profile, reply
 Required JSON structure:
 {{
   "name": "<Full Name>",
+  "email": "<Email>",
+  "phone": "<Phone Number>",
+  "website": "<Website>",
   "skills": ["<Skill1>", "<Skill2>", ...],
   "experience": "<Experience Summary>",
   "certifications": ["<Cert1>", "<Cert2>", ...],
@@ -58,7 +60,6 @@ def freelancer_profile_checker_agent(state: AppState) -> AppState:
     chain = prompt | llm
     # Run the chain
     response = chain.invoke({"profile": profile})
-    print(response)
     # response = llm.invoke(formatted_prompt)
 
     try:
