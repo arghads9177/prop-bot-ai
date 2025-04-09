@@ -1,5 +1,4 @@
-# agents/company_profile_checker.py
-
+#  Implementation of a tool to check company profiles.
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.tools import tool
@@ -75,7 +74,7 @@ def company_profile_checker_agent(state: AppState) -> AppState:
     try:
         parsed = parser.parse(response.content)
         if "error" in parsed:
-            return {"company_profile": None, "steps_completed": state.get("steps_completed", []) + ["Company Profile Checker"], "error": parsed["error"]}
-        return {"company_profile": parsed, "steps_completed": state.get("steps_completed", []) + ["Company Profile Checker"]}
+            return {"company_info": None, "steps_completed": state.get("steps_completed", []) + ["Company Profile Checker"], "error": parsed["error"]}
+        return {"company_info": parsed, "steps_completed": state.get("steps_completed", []) + ["Company Profile Checker"]}
     except Exception:
-        return {"company_profile": None, "steps_completed": state.get("steps_completed", []) + ["Company Profile Checker"], "error": "Failed to parse company profile."}
+        return {"company_info": None, "steps_completed": state.get("steps_completed", []) + ["Company Profile Checker"], "error": "Failed to parse company profile."}
