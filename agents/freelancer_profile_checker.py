@@ -52,6 +52,8 @@ def freelancer_profile_checker_agent(state: AppState) -> AppState:
     Validates and extracts relevant freelancer information from the input string.
     Returns a structured dictionary if valid, or an error message if not.
     """
+    print("📥 Received state in freelancer_profile_checker:")
+    print(state)
     profile = state.get("freelancer_profile", "")
     if not profile.strip():
         return {"freelancer_info": None, "steps_completed": state.get("steps_completed", []) + ["Freelancer Profile Checker"], "error": "No freelancer profile provided."}
