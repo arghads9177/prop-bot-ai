@@ -12,7 +12,7 @@ beautifulsoup4
 requests
 chromadb
 sentence-transformers
-numpy
+numpy==1.26.0
 python-dotenv
 pandas
 python-docx
